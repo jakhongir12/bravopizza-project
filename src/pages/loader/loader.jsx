@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
 import { CircularProgress } from "@material-ui/core";
@@ -11,26 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Loader = ({ pizza }) => {
+const Loader = ({ loading }) => {
   const classes = useStyles();
-
-  const [open, setOpen] = useState(false);
-
-  function loadFunction() {
-    return pizza ? setOpen(false) : setOpen(true);
-  }
-
-  useEffect(() => {
-    loadFunction();
-  }, [pizza]);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+      <Backdrop className={classes.backdrop} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
